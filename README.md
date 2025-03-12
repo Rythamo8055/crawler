@@ -1,74 +1,45 @@
 # Agno Documentation Crawler
 
-A high-performance asynchronous web crawler designed to download and convert Agno documentation into markdown format.
-
-## Features
-- Asynchronous crawling with memory management
-- Parallel processing with configurable batch sizes
-- Markdown conversion and storage
-- Docker support for easy deployment
-- Progress tracking and error handling
-
-## Prerequisites
-- Docker Desktop
-- Python 3.11+ (for local development)
-- Git
+A high-performance asynchronous web crawler designed to download and convert web content into markdown format.
 
 ## Quick Start
 
-### Using Docker (Recommended)
 1. Clone the repository:
    ```bash
    git clone https://github.com/Rythamo8055/crawler.git
-   cd agno-crawler
+   cd crawler
    ```
 
-2. Build and run using Docker Compose:
+2. Start the application:
    ```bash
-   docker-compose up --build
+   docker compose up
    ```
 
-### Local Development Setup
-1. Create virtual environment:
-   ```bash
-   python -m venv venv
-   venv\Scripts\activate
-   ```
+3. Open http://localhost:7860 in your browser to access the crawler interface.
 
-2. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+## Features
+- Multiple URL input methods:
+  - Comma-separated URLs
+  - Text file with URLs
+  - XML sitemap content
+  - XML sitemap URL
+- User-selectable output directory
+- Asynchronous crawling with memory management
+- Parallel processing with configurable batch sizes
+- Markdown conversion and storage
 
-3. Run the crawler:
-   ```bash
-   python app/crawler.py
-   ```
+## Configuration (Optional)
 
-## Project Structure
-```
-agno-crawler/
-├── app/
-│   ├── crawler.py      # Main crawler logic
-│   └── config.py       # Configuration settings
-├── docker/
-│   ├── Dockerfile      # Multi-stage build for container
-│   └── docker-compose.yml
-├── .env.example
-├── .gitignore
-├── requirements.txt
-└── README.md
-```
+The application works out of the box, but you can customize it by creating a `.env` file:
 
-## Configuration
-Copy `.env.example` to `.env` and adjust settings:
 ```env
-BATCH_SIZE=10
-OUTPUT_DIR=./output
-LOG_LEVEL=INFO
+BATCH_SIZE=10    # Number of URLs to process in parallel
+OUTPUT_DIR=./output    # Where to save the markdown files
+LOG_LEVEL=INFO    # Logging verbosity
 ```
 
 ## Output
+
 Crawled documentation is saved in the output directory with the following structure:
 ```
 output/
@@ -78,15 +49,27 @@ output/
 └── workflows/
 ```
 
-## Contributing
-1. Fork the repository
-2. Create your feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+## Local Development
 
-## License
-MIT License
+If you prefer to run without Docker:
+
+1. Install Python 3.11+
+2. Create and activate virtual environment:
+   ```bash
+   python -m venv venv
+   venv\Scripts\activate
+   ```
+3. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+4. Run the application:
+   ```bash
+   python app/crawler.py
+   ```
 
 ## Support
 For issues and feature requests, please use the GitHub issue tracker.
+
+## License
+MIT License

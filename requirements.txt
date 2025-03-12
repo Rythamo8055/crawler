@@ -3,3 +3,4 @@ psutil
 requests
 asyncio
 python-dotenv
+gradio>=4.0.0
