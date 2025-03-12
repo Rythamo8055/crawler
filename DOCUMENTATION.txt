@@ -1,0 +1,93 @@
+Agno Documentation Crawler - Project Documentation
+
+Project Overview
+---------------
+The Agno Documentation Crawler is a high-performance asynchronous web crawler designed to download and convert Agno documentation into markdown format. It utilizes modern Python features and Docker containerization for efficient and reliable operation.
+
+Project Structure
+----------------
+/
+├── app/
+│   ├── crawler.py      # Main crawler implementation with parallel processing
+│   └── config.py       # Configuration management using Pydantic
+├── docker/
+│   ├── Dockerfile      # Multi-stage build for optimized container
+│   └── docker-compose.yml  # Container orchestration configuration
+├── .env.example        # Template for environment variables
+├── .gitignore         # Git ignore patterns
+├── README.md          # Project documentation
+├── requirements.txt   # Python dependencies
+└── DOCUMENTATION.txt  # Detailed technical documentation
+
+Key Components
+-------------
+1. Crawler (app/crawler.py)
+   - Implements parallel crawling with browser reuse
+   - Memory management and monitoring
+   - Markdown conversion and storage
+   - Configurable batch processing
+
+2. Configuration (app/config.py)
+   - Environment-based configuration using Pydantic
+   - Default settings with override capability
+   - Type-safe configuration management
+
+3. Docker Setup
+   - Multi-stage build for minimal image size
+   - Volume mounting for persistent storage
+   - Health checking and automatic restarts
+   - Environment variable support
+
+Dependencies
+------------
+- crawl4ai>=0.1.5: Core crawling functionality
+- psutil: System and process monitoring
+- requests: HTTP client for web requests
+- asyncio: Asynchronous I/O operations
+- python-dotenv: Environment variable management
+
+Configuration Options
+--------------------
+- BATCH_SIZE: Number of concurrent crawling tasks (default: 10)
+- OUTPUT_DIR: Directory for storing crawled content (default: "./output")
+- LOG_LEVEL: Logging verbosity (default: "INFO")
+- PAGE_TIMEOUT: Maximum page load time in ms (default: 60000)
+- WAIT_UNTIL: Page load completion criteria (default: "networkidle")
+
+Deployment
+----------
+1. Local Development:
+   - Create and activate virtual environment
+   - Install dependencies from requirements.txt
+   - Copy .env.example to .env and configure
+   - Run crawler.py directly
+
+2. Docker Deployment:
+   - Build using docker-compose build
+   - Run using docker-compose up
+   - Monitor health checks
+   - Access logs via docker logs
+
+Performance Considerations
+------------------------
+- Memory usage is monitored and logged
+- Configurable batch sizes for parallel processing
+- Browser reuse for improved efficiency
+- Automatic cleanup of resources
+
+Troubleshooting
+---------------
+1. Memory Issues:
+   - Adjust batch size in configuration
+   - Monitor memory usage logs
+   - Consider container memory limits
+
+2. Network Issues:
+   - Check network connectivity
+   - Verify URL accessibility
+   - Review timeout settings
+
+3. Storage Issues:
+   - Ensure sufficient disk space
+   - Check volume mount permissions
+   - Monitor output directory size

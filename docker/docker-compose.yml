@@ -1,0 +1,20 @@
+version: '3.8'
+
+services:
+  crawler:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    volumes:
+      - ../output:/app/output
+      - ../config:/app/config
+    env_file:
+      - ../.env
+    ports:
+      - "7860:7860"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import requests; requests.get('http://localhost:7860')"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
